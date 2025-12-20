@@ -1,0 +1,96 @@
+# =========================
+# Fonts
+# =========================
+[font]
+size = 12.0
+
+[font.normal]
+family = "IosevkaTerm Nerd Font"
+
+# odpowiednik: modify_font cell_height +1px
+[font.offset]
+y = 1
+
+# =========================
+# Window
+# =========================
+[window]
+padding = { x = 14, y = 14 }
+dynamic_padding = false
+decorations = "full"
+
+# =========================
+# Cursor
+# =========================
+[cursor]
+style = { shape = "Underline", blinking = "On" }
+blink_interval = 250
+unfocused_hollow = true
+
+# =========================
+# Scrolling
+# =========================
+[scrolling]
+history = 2000
+multiplier = 3
+
+# =========================
+# Selection / Clipboard
+# =========================
+[selection]
+save_to_clipboard = true
+
+# =========================
+# Colors – Flat Remix (from kitty)
+# =========================
+[colors.primary]
+background = "#000000"
+foreground = "#FFFFFF"
+
+[colors.cursor]
+cursor = "#FFFFFF"
+text = "#000000"
+
+[colors.selection]
+background = "#FFFFFF"
+text = "#000000"
+
+[colors.normal]
+black   = "#000000"
+red     = "#bc2a08"
+green   = "#19c803"
+yellow  = "#f4c315"
+blue    = "#1974cc"
+magenta = "#c01ec5"
+cyan    = "#1a9bb9"
+white   = "#E6E6E6"
+
+[colors.bright]
+black   = "#51525d"
+red     = "#bc2a08"
+green   = "#19c803"
+yellow  = "#f4c315"
+blue    = "#1974cc"
+magenta = "#c01ec5"
+cyan    = "#1a9bb9"
+white   = "#FFFFFF"
+
+# =========================
+# Key bindings (font size)
+# =========================
+[[keyboard.bindings]]
+key = "Minus"
+mods = "Control"
+action = "DecreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Equals"
+mods = "Control"
+action = "IncreaseFontSize"
+
+[[keyboard.bindings]]
+key = "Key0"
+mods = "Control"
+action = "ResetFontSize"
+
+

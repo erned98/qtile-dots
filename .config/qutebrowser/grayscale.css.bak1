@@ -1,0 +1,10 @@
+div, p, span, a, h1, h2, h3, h4, h5, h6,
+ul, ol, li, section, article, header, footer,
+nav, aside, main, table, tr, td, th, input, textarea,
+button, form, label, blockquote {
+    filter: grayscale(100%) !important;
+}
+
+img, picture, video, canvas {
+    filter: grayscale(0%) !important;
+}

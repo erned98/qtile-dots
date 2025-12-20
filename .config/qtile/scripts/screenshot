@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+## Copyright (C) 2020-2024 Aditya Shakya <adi1090x@gmail.com>
+##
+## Script to take screenshots on Archcraft.
+
+# file
+time=`date +%Y-%m-%d-%H-%M-%S`
+geometry=`xrandr | grep 'current' | head -n1 | cut -d',' -f2 | tr -d '[:blank:],current'`
+dir="`xdg-user-dir PICTURES`/Screenshots"
+file="Screenshot_${time}_${geometry}.png"
+
+# directory
+if [[ ! -d "$dir" ]]; then
+	mkdir -p "$dir"
+fi
+
+screen () {
+	maim -u -d 3 $dir/$file | xclip -selection -clipboard -t image/png
+}
+
+window () {
+	maim -u -i $(xdotool getactivewindow) -d 3 $dir/$file | xclip -selection -clipboard -t image/png
+}
+
+area () {
+	maim -u -s -d 3 $dir/$file | xclip -selection -clipboard -t image/png
+}
+
+notify () {
+	paplay /usr/share/sounds/freedesktop/stereo/screen-capture.oga
+	notify-send 'A screenshot has been made.' 'You can find it in your screenshots directory.' -i org.xfce.screenshooter
+}
+
+if [[ "$1" == "--screen" ]]; then
+	screen && notify
+elif [[ "$1" == "--area" ]]; then
+	area && notify
+elif [[ "$1" == "--window" ]]; then
+	window && notify
+else
+	echo -e "Available options: --screen --area --window"
+fi
+
+exit

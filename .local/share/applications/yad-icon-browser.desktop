@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Icon Browser
+GenericName=Icon Browser
+TryExec=yad-icon-browser
+Exec=yad-icon-browser
+Categories=Tools
+Path=
+Hidden=true
+Terminal=false

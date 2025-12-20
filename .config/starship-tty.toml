@@ -1,0 +1,438 @@
+# 
+# ███████╗████████╗ █████╗ ██████╗ ███████╗██╗  ██╗██╗██████╗ 
+# ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗██╔════╝██║  ██║██║██╔══██╗
+# ███████╗   ██║   ███████║██████╔╝███████╗███████║██║██████╔╝
+# ╚════██║   ██║   ██╔══██║██╔══██╗╚════██║██╔══██║██║██╔═══╝ 
+# ███████║   ██║   ██║  ██║██║  ██║███████║██║  ██║██║██║     
+# ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝╚═╝     
+#                                                             
+
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$fossil_branch\
+$hg_branch\
+${custom.syncthing}\
+$fill\
+$sudo\
+$all\
+$status\
+$cmd_duration\
+$battery\
+$time\
+$line_break\
+$character
+"""
+
+# right_format = """$status\
+# $cmd_duration"""
+
+continuation_prompt = "[>> ](bright-black)"
+command_timeout = 1000
+
+[username]
+style_user = 'bold bright-purple'
+style_root = 'bold bright-red'
+format = '[$user]($style) in '
+
+[character]
+format = "$symbol "
+success_symbol = '[->](bold bright-green)'
+error_symbol = '[->](bold bright-red)'
+
+[directory]
+style = 'bold bright-cyan'
+truncation_length = 3
+truncation_symbol = '.../'
+truncate_to_repo = true
+read_only = ' [ro]'
+read_only_style = 'bold yellow'
+home_symbol = '~'
+repo_root_format = '[$path]($style)[$read_only]($read_only_style)'
+# home_symbol = ' '
+# fish_style_pwd_dir_length = 1
+
+# [directory.substitutions]
+# ' /.config' = ' '
+# ' /Desktop' = ' '
+# ' /Documents' = ' '
+# ' /Downloads' = ' '
+# ' /Galaxy' = ' '
+# ' /Music' = ' '
+# ' /Pictures' = ' '
+# ' /Public' = ' '
+# ' /Scripts' = ' '
+# ' /Templates' = ' '
+# ' /Videos' = ' '
+# ' /Wallpapers' = ' '
+
+[fill]
+disabled = false
+symbol = ' '
+
+[cmd_duration]
+min_time = 2000
+format = '\[took [$duration](bold yellow)\]' 
+
+[sudo]
+disabled = false
+symbol = 'sudo' 
+format = '\[[$symbol]($style)\]'
+style = 'yellow'
+
+[jobs]
+format = "[[$symbol $number]($style)]"
+style = "white"
+symbol = "[+](cyan bold)"
+
+[battery]
+format = '\[$symbol [$percentage]($style) '
+full_symbol = "batt"
+charging_symbol = "[char](green)"
+discharging_symbol = "batt"
+unknown_symbol = "batt ?"
+empty_symbol = "batt !"
+
+[[battery.display]]
+threshold = 25
+style = "bright-red"
+
+[[battery.display]]
+threshold = 50
+style = "bright-yellow"
+
+[[battery.display]]
+threshold = 100
+style = "bright-green"
+
+[status]
+disabled = false
+format = '\[[$symbol]($style) $status\]'
+style = 'bold bright-red'
+symbol = "X"
+not_executable_symbol = "X"
+not_found_symbol = "X"
+
+[time]
+disabled = false
+format = '$time\]'
+time_format = '%R'
+utc_time_offset = 'local'
+
+# 
+# ┌─┐┬ ┬┌┬┐┌┐ ┌─┐┬  ┌─┐
+# └─┐└┬┘│││├┴┐│ ││  └─┐
+# └─┘ ┴ ┴ ┴└─┘└─┘┴─┘└─┘
+#
+
+[aws]
+symbol = "aws"
+format = '\[$symbol [$profile $region]($style)\]'
+style = "bold yellow"
+
+[buf]
+symbol = "buf"
+format = '\[$symbol [$version]($style)\]'
+style = "bold cyan"
+detect_files = ['buf.yaml', 'buf.gen.yaml', 'buf.work.yaml']
+
+[c]
+symbol = "c"
+format = '\[$symbol [$version]($style)\]'
+style = "bold blue"
+detect_extensions = ['c', 'h']
+
+[cpp]
+symbol = "cpp"
+format = '\[$symbol [$version]($style)\]'
+style = "bold blue"
+detect_extensions = ['cpp', 'cc', 'cxx', 'c++', 'hpp', 'hh', 'hxx', 'h++', 'tcc']
+
+[cmake]
+symbol = "cmk"
+format = '\[$symbol [$version]($style)\]'
+style = "bold red"
+detect_files = ['CMakeLists.txt', 'CMakeCache.txt']
+
+[conda]
+symbol = "cnd"
+format = '\[$symbol [$environment]($style)\]'
+style = "bold green"
+truncation_length = 1
+ignore_base = true
+detect_env_vars = ["!PIXI_ENVIRONMENT_NAME"]
+
+[crystal]
+symbol = "cr"
+format = '\[$symbol [$version]($style)\]'
+style = "bold bright-black"
+detect_extensions = ['cr']
+detect_files = ['shard.yml']
+
+[dart]
+symbol = "dart"
+format = '\[$symbol [$version]($style)\]'
+style = "bold cyan"
+detect_extensions = ['dart']
+detect_files = ['pubspec.yaml', 'pubspec.yml', 'pubspec.lock']
+detect_folders = ['.dart_tool']
+
+[docker_context]
+symbol = "dckr"
+format = '\[$symbol [$context]($style)\]'
+style = "bold cyan"
+detect_files = ['docker-compose.yml', 'docker-compose.yaml', 'Dockerfile']
+
+[elixir]
+symbol = "exs"
+format = '\[$symbol [$version (OTP $otp_version)]($style)\]'
+style = "bold purple"
+detect_files = ['mix.exs']
+
+[elm]
+symbol = "elm"
+format = '\[$symbol [$version]($style)\]'
+style = "bold green"
+detect_extensions = ['elm']
+detect_files = ['elm.json', 'elm-package.json', '.elm-version']
+detect_folders = ['elm-stuff']
+
+[fennel]
+symbol = "fnl"
+format = '\[$symbol [$version]($style)\]'
+style = "bold yellow"
+detect_extensions = ['fnl']
+
+[fossil_branch]
+symbol = "fossil"
+style = "bold yellow"
+
+[git_branch]
+symbol = "git "
+style = 'bold yellow'
+
+[git_commit]
+tag_symbol = 'gcm'
+format = '\[$symbol [($hash$tag)]($style)\]'
+style = "bold green"
+only_detached = true
+tag_disabled = false
+commit_hash_length = 3
+
+[git_status]
+style = 'bold yellow'
+format = '([\[$all_status$ahead_behind\]]($style) )'
+conflicted = "="
+ahead = ">"
+behind = "<"
+diverged = "<>"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "r"
+deleted = "x"
+
+[golang]
+symbol = "go"
+format = '\[$symbol [$version]($style)\]'
+style = "bold cyan"
+not_capable_style = 'bold red'
+detect_extensions = ['go']
+detect_files = ['go.mod', 'go.sum', 'go.work', 'glide.yaml', 'Gopkg.yml', 'Gopkg.lock', '.go-version']
+detect_folders = ['Godeps']
+
+[guix_shell]
+symbol = "guix"
+format = '\[$symbol [$version]($style)\]'
+style = "bold yellow"
+
+[haskell]
+symbol = "hs"
+format = '\[$symbol [$version]($style)\]'
+style = "bold purple"
+detect_extensions = ['hs', 'cabal', 'hs-boot']
+detect_files = ['stack.yaml', 'cabal.project']
+
+[haxe]
+symbol = "hx"
+format = '\[$symbol [$version]($style)\]'
+style = "bold yellow"
+detect_extensions = ['hx', 'hxml']
+detect_files = ['project.xml', 'Project.xml', 'application.xml', 'haxelib.json', 'hxformat.json', '.haxerc']
+detect_folders = ['.haxelib', 'haxe_libraries']
+
+[hg_branch]
+symbol = "hg"
+style = "bold yellow"
+
+[hostname]
+ssh_symbol = "ssh"
+format = "[$ssh_symbol $hostname]($style) in"
+ssh_only = true
+style = "bold purple"
+
+[java]
+symbol = "java"
+format = '\[$symbol [$version]($style)\]'
+style = "bold bright-red"
+detect_extensions = ['java', 'class', 'gradle', 'jar', 'cljs', 'cljc']
+detect_files = ['pom.xml', 'build.gradle.kts', 'build.sbt', '.java-version', 'deps.edn', 'project.clj', 'build.boot', '.sdkmanrc']
+
+[julia]
+symbol = "jl"
+format = '\[$symbol [$version]($style)\]'
+style = "bold purple"
+detect_extensions = ['jl']
+detect_files = ['Project.toml', 'Manifest.toml']
+
+[kotlin]
+symbol = "kt"
+format = '\[$symbol [$version]($style)\]'
+style = "bold purple"
+detect_extensions = ['kt', 'kts']
+kotlin_binary = "kotlin"
+
+[lua]
+symbol = "lua"
+format = '\[$symbol [$version]($style)\]'
+style = 'bold blue'
+detect_extensions = ['lua']
+detect_files = ['.lua-version']
+detect_folders = ['lua']
+lua_binary = 'lua'
+
+[memory_usage]
+disabled = false
+symbol = "mem"
+format = '\[[\(!\)](bold yellow)  $symbol  [ram ${ram_pct} | swp ${swap_pct}]($style)\]'
+style = "bold bright-red"
+threshold = 75
+
+[meson]
+symbol = "msn"
+format = '\[$symbol [$project]($style)\]'
+style = "bold purple"
+truncation_symbol = ''
+
+[nim]
+symbol = "nim"
+format = '\[$symbol [$version]($style)\]'
+style = "bold yellow"
+detect_extensions = ['nim', 'nims', 'nimble']
+detect_files = ['nim.cfg']
+
+[nix_shell]
+symbol = "nix"
+format = '\[$symbol [$state($name)]($style)\]'
+style = "bold cyan"
+
+[nodejs]
+symbol = "js"
+format = '\[$symbol [$version]($style)\]'
+style = 'bold green'
+detect_extensions = ['js', 'mjs', 'cjs', 'ts', 'mts', 'cts']
+detect_files = ['package.json', '.node-version', '.nvmrc']
+detect_folders = ['node_modules']
+
+[ocaml]
+symbol = "ml"
+format = '\[$symbol [$version ($switch_indicator$switch_name)]($style)\]'
+style = "bold yellow"
+global_switch_indicator = ''
+local_switch_indicator = '*'
+detect_extensions = ['opam', 'ml', 'mli', 're', 'rei']
+detect_files = ['dune', 'dune-project', 'jbuild', 'jbuild-ignore', '.merlin']
+detect_folders = ['_opam', 'esy.lock']
+
+[package]
+symbol = "pkg"
+format = '\[$symbol [$version]($style)\]'
+style = "bold yellow"
+display_private = false
+
+[perl]
+symbol = "pl"
+format = '\[$symbol [$version]($style)\]'
+style = "bold cyan"
+detect_extensions = ['pl', 'pm', 'pod']
+detect_files = ['Makefile.PL', 'Build.PL', 'cpanfile', 'cpanfile.snapshot', 'META.json', 'META.yml', '.perl-version']
+
+[php]
+symbol = "php"
+format = '\[$symbol [$version]($style)\]'
+style = "bold purple"
+detect_extensions = ['php']
+detect_files = ['composer.json', '.php-version']
+
+[pijul_channel]
+symbol = "pjl"
+style = "bold yellow"
+
+[python]
+symbol = "py"
+format = '\[$symbol [$version]($style)\]'
+style = 'bold yellow'
+python_binary = ['python', 'python3', 'python2']
+detect_extensions = ["py", "ipynb"]
+detect_files = ['.python-version', 'Pipfile', '__init__.py', 'pyproject.toml', 'requirements.txt', 'setup.py', 'tox.ini']
+
+[rlang]
+symbol = "R"
+format = '\[$symbol [$version]($style)\]'
+style = "bold blue"
+detect_extensions = ['R', 'Rd', 'Rmd', 'Rproj', 'Rsx']
+detect_files = ['.Rprofile']
+detect_folders = ['.Rproj.user']
+
+[ruby]
+symbol = "rb"
+format = '\[$symbol [$version]($style)\]'
+style = "bold red"
+detect_extensions = ['rb']
+detect_files = ['Gemfile', '.ruby-version']
+detect_variables = ['RUBY_VERSION', 'RBENV_VERSION']
+
+[rust]
+symbol = "rs"
+format = '\[$symbol [$version]($style)\]'
+style = "bold bright-red"
+detect_extensions = ['rs']
+detect_files = ['Cargo.toml']
+
+[scala]
+symbol = "sbt"
+format = '\[$symbol [$version]($style)\]'
+style = "bold red"
+detect_extensions = ['sbt', 'scala']
+detect_files = ['.scalaenv', '.sbtenv', 'build.sbt']
+detect_folders = ['.metals']
+
+[swift]
+symbol = "swift"
+format = '\[$symbol [$version]($style)\]'
+style = "bold yellow"
+detect_extensions = ['swift']
+detect_files = ['Package.swift']
+
+[zig]
+symbol = "zig"
+format = '\[$symbol [$version]($style)\]'
+style = "bold yellow"
+detect_extensions = ['zig']
+
+[gradle]
+symbol = "gradle"
+format = '\[$symbol [$version]($style)\]'
+style = "bold green"
+detect_extensions = ['gradle', 'gradle.kts']
+detect_folders = ['gradle']
+
+[custom.syncthing]
+symbol = "sync"
+style = "bold yellow"
+detect_folders = [".stfolder"]
+format = '\[[$symbol]($style)\]'

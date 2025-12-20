@@ -1,0 +1,7 @@
+html:not(.no-grayscale) {
+	filter: grayscale(100%) !important;
+}
+
+img, picture, video, canvas {
+    filter: grayscale(0%) !important;
+}

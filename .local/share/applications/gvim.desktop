@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=GVim
+GenericName=Edytor tekstu
+TryExec=gvim
+Exec=gvim
+Categories=Office
+Path=
+Hidden=true
+Terminal=false

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Syncthing Web UI
+GenericName=Syncthing's Web UI in a browser
+TryExec="kitty syncthing --browser-only"
+Exec="syncthing --browser-only"
+Categories=Internet
+Path=
+Terminal=false

@@ -1,0 +1,52 @@
+# ~/.config/betterlockscreenrc
+
+# default options
+display_on=0
+span_image=true
+lock_timeout=300
+fx_list=(dim blur dimblur pixel dimpixel color)
+dim_level=75
+blur_level=1
+pixel_scale=5,5
+solid_color=1b1d24
+wallpaper_cmd="feh --bg-fill"
+quiet=false
+
+# default theme
+loginbox=000d0d0d
+loginshadow=00000000
+locktext="please authenticate"
+font="JetBrainsMono Nerd Font"
+font_size=48
+font_size_small=11.75
+ringcolor=ffffffff
+insidecolor=00000000
+separatorcolor=00000000
+ringvercolor=ffffffff
+insidevercolor=00000000
+ringwrongcolor=ffffffff
+insidewrongcolor=d2d41919
+timecolor=ffffffff
+time_format="%H:%M"
+greetercolor=ffffffff
+layoutcolor=ffffffff
+keyhlcolor=9855b3
+bshlcolor=9855b3
+veriftext="Verifying..."
+verifcolor=ffffffff
+wrongtext="Failure!"
+wrongcolor=d2367bf0
+modifcolor=d25ebdab
+bgcolor=000000
+
+
+#
+# expert options (change at own risk!)
+#
+
+# i3lockcolor_bin="i3lock-color"      # Manually set command for i3lock-color
+# suspend_command="systemctl suspend" # Manually change action e.g. hibernate/suspend-command
+
+# i3lock-color - custom arguments
+# lockargs=() 						  # overwriting default "(-n)"
+# lockargs+=(--ignore-empty-password) # appending new argument

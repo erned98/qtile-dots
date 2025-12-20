@@ -1,0 +1,9 @@
+#! /bin/bash
+
+if [[ "$1" == "plus" ]]; then
+	xbacklight -inc 10
+elif [[ "$1" == "minus" ]]; then
+	xbacklight -dec 10
+else 
+	echo -e "Available options: plus minus"
+fi

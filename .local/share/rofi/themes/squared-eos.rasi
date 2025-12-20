@@ -1,0 +1,99 @@
+/*******************************************************************************
+ * ROFI SQUARED THEME USING THE MATERIAL DARKER PALETTE 
+ * User                 : LR-Tech               
+ * Theme Repo           : https://github.com/lr-tech/rofi-themes-collection
+ *******************************************************************************/
+
+* {
+    font:   "JetBrainsMono Nerd Font Medium 13";
+
+    bg0:                #0d0d0d;
+    fg0:                #962ac3;
+    text:               #ffffff;
+    urgent:             #ec0101;
+    urgent-text:        #fea44c;
+    background-color:   transparent;
+    text-color:         @text;
+
+    margin:     0;
+    padding:    0;
+    spacing:    0;
+}
+
+window {
+    location:   center;
+    width:      640;
+    border:     4px;
+    border-color:       @text;
+    background-color:   @bg0;
+}
+
+inputbar {
+    spacing:    8px; 
+    padding:    8px;
+
+    background-color:   @fg0;
+    text-color:         @text;
+}
+
+prompt, entry, element-icon, element-text {
+    vertical-align: 0.5;
+}
+
+prompt {
+    text-color: @text;
+}
+
+textbox {
+    padding:            8px;
+    background-color:   @bg0;
+}
+
+listview {
+    padding:    4px 0;
+    lines:      10;
+    columns:    1;
+
+    fixed-height:   false;
+}
+
+element {
+    padding:    8px;
+    spacing:    8px;
+}
+
+element normal normal {
+    text-color: @text;
+}
+
+element normal urgent {
+    text-color: @urgent;
+}
+
+element normal active {
+    text-color: @text;
+}
+
+element alternate active {
+    text-color: @urgent-text;
+}
+
+element selected {
+    text-color: @bg0;
+}
+
+element selected normal, element selected active {
+    background-color:   @text;
+}
+
+element selected urgent {
+    background-color:   @urgent;
+}
+
+element-icon {
+    size:   0.8em;
+}
+
+element-text {
+    text-color: inherit;
+}

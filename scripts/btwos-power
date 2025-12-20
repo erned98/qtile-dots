@@ -1,0 +1,20 @@
+#! /bin/bash
+
+set -e
+set -u
+
+selection="$(echo -e "Shut down\nReboot\nSuspend\nLock screen" | rofi -dmenu -i -p " ")"
+
+if [ -n "$selection" ]; then
+    answer="$(echo -e "Yes, do as I say!\nNo, cancel" | rofi -dmenu -i -p "$selection?")"
+    
+    if [[ $answer == "Yes, do as I say!" ]]; then
+        if [[ $selection == "Shut down" ]]; then shutdown -h now
+        elif [[ $selection == "Reboot" ]]; then shutdown -r now
+        elif [[ $selection == "Suspend" ]]; then systemctl suspend
+        elif [[ $selection == "Lock screen" ]]; then betterlockscreen -l blur
+        fi
+    fi
+fi
+
+

@@ -1,0 +1,31 @@
+name:
+  .trash: 
+  .cargo: 
+  .emacs.d: 
+  a.out: 
+  .config: 
+  desktop: 
+  documents: 
+  downloads:  
+  music: 
+  pictures: 
+  public:  
+  scripts: 
+  templates:  
+  videos: 
+  wallpapers: 
+extension:
+  go: 
+  hs: 
+  rs: 🦀
+filetype:
+  dir: 
+  file: 
+  pipe: 📩
+  socket: 󰆨
+  executable: 
+  symlink-dir: 
+  symlink-file: 
+  device-char: 
+  device-block: 󰜫
+  special: 

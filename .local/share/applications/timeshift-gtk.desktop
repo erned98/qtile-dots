@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Timeshift
+GenericName=System Restore Utility
+TryExec=timeshift-gtk
+Exec=timeshift-gtk
+Categories=Tools
+Path=
+Hidden=true
+Terminal=false

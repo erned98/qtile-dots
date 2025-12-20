@@ -1,0 +1,11 @@
+# GIMP gimp-smudge-tool options
+
+(foreground (color-rgb 0.59607843137254901 0.33333333333333331 0.70196078431372544))
+(brush "2. Hardness 050")
+(dynamics "Dynamics Off")
+(gradient "Standard")
+(palette "Standard")
+(brush-size 17)
+(brush-hardness 0.5)
+
+# end of gimp-smudge-tool options

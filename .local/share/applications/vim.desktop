@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Vim
+GenericName=Text Editor
+TryExec=vim
+Exec=vim
+Categories=Office
+Path=
+Hidden=true
+Terminal=false
