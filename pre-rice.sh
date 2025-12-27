@@ -10,8 +10,21 @@ while true; do
         [yes]* )
             ## first of all, let's take care of mirrors
             sudo reflector --protocol https --verbose --latest 25 --sort rate --save /etc/pacman.d/mirrorlist
-            eos-rankmirrors --verbose       # comment out if you don't use EndeavourOS
-            yay -Syyu
+            
+            ## let's set up Chaotic-AUR
+            # We start by retrieving the primary key to enable the installation of our keyring and mirror list.
+            sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+            sudo pacman-key --lsign-key 3056513887B78AEB
+
+            # This allows us to install our chaotic-keyring and chaotic-mirrorlist packages.
+            sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+            sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+
+            # Then, we append (adding at the end) the following to /etc/pacman.conf:
+            sudo sed -i -e '$a\\n[chaotic-aur]\nInclude = /etc/pacman.d/chaotic-mirrorlist' /etc/pacman.conf
+
+            # We recommend running a full system update along syncing our mirrorlist.
+            sudo pacman -Syu rate-mirrors yay
 
             ## now, let's install!
             # let's install graphical environment and basic utilities
@@ -43,15 +56,15 @@ while true; do
             done
 
             echo -e '\n\e[1;96mInstalling graphical environment and basic utilities...'
-            yay -S --noconfirm xorg xorg-xinit $graphics zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting kitty lsd bat qtile python-pywlroots picom rofi dunst polybar pulsemixer polkit-gnome ly betterlockscreen pipewire pipewire-pulse pipewire-alsa pipewire-jack ufw
+            yay -S --noconfirm xorg xorg-xinit $graphics zsh zsh-completions zsh-autosuggestions zsh-syntax-highlighting kitty lsd bat qtile python-pywlroots picom rofi dunst pulsemixer polkit-gnome ly betterlockscreen pipewire pipewire-pulse pipewire-alsa pipewire-jack ufw
             
             # let's install basic apps
             echo -e '\n\e[1;96mInstalling basic applications...'
-            yay -S --noconfirm feh imv ncmpcpp mpd mpc zathura zathura-pdf-mupdf ranger python-pillow fastfetch mpv gvim timeshift scrot nwg-look htop w3m
+            yay -S --noconfirm feh zathura zathura-pdf-mupdf ranger python-pillow fastfetch mpv gvim timeshift maim nwg-look htop w3m
 
             # let's install some additional apps - EXAMINE THAT PART AND REDACT IT IF YOU WISH TO
             echo -e '\n\e[1;96mInstalling user-defined applications...'
-            yay -S --noconfirm firefox qutebrowser python-adblock android-tools antiword libqalculate spotify-player-full-pipe calcurse newsboat redshift gammastep mp3gain ffmpeg gimp
+            yay -S --noconfirm brave-bin android-tools libreoffice-fresh libqalculate spotify-player calcurse newsboat redshift gammastep mp3gain ffmpeg gimp
             
             # let's turn on some services
             sudo systemctl enable ly.service
